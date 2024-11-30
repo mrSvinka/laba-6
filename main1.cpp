@@ -12,3 +12,49 @@
 Дана последовательность натуральных чисел {Aj}j=1...n (n<=10000). Удалить из последовательности числа, произведение цифр которых равно 180, а среди оставшихся продублировать числа, начинающиеся и заканчивающиеся цифрой 1.
 
 */
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+bool isPrime(int num) 
+{
+    if (num < 2) return false;
+    for (int i = 2; i * i <= num; i++) 
+    {
+        if (num % i == 0) return false;
+    }
+    return true;
+}
+
+int main() 
+{
+    int n;
+    cout << "Введите количество чисел: ";
+    cin >> n;
+    vector<int> numbers(n);
+
+    cout << "Введите числа: ";
+    for (int i = 0; i < n; ++i) 
+    {
+        cin >> numbers[i];
+    }
+
+    for (int num : numbers) 
+    {
+        if (isPrime(num)) 
+        {
+            sort(numbers.begin(), numbers.end());
+            break;
+        }
+    }
+
+    cout << "Упорядоченная последовательность: ";
+    for (int num : numbers) 
+    {
+        cout << num << " ";
+    }
+    return 0;
+}
